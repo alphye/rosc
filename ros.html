@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+
+<script type="text/javascript" src="roslib/easeljs.js"></script>
+<script type="text/javascript" src="roslib/eventemitter2.js"></script>
+<script type="text/javascript" src="roslib/roslib.js"></script>
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript" src="roslib/ros2d.js"></script>
+<script type="text/javascript" src="roslib/nav2d.js"></script>
+<script type="text/javascript" src="js/ros.js"></script>
+<style>
+	.fLable{text-align:right}
+	table{border:1px dotted blue}
+	.label {border-top:1px dotted blue}
+	
+</style>
+
+</head>
+
+<body>
+  
+  <table align="center" style="width:60%;">
+	<thead style="border:1px dotted">
+		<tr>
+			<td colspan="5" align="center">
+				<h1>Simple ros Example</h1>
+			</td>
+		</tr>
+		<tr> <td colspan="5" align="center"  ><h4 class="label">server connect</h4></td></tr>
+		<tr style="margin-top:10px;">
+			<td class="fLable">host：</td>
+			<td><input id="host"/></td>
+			<td class="fLable">port：</td>
+			<td><input id="port"/></td>
+			<td  align="right">
+				<button onclick="connectToServer();">connect</button>
+				<button onclick="onunload2();">disconnect</button>
+			</td>
+		</tr>
+		<tr><td>&nbsp;</td></tr>
+	</thead>
+	<tbody id="topicBody_pub">
+		<tr> <td colspan="5" align="center"  ><h4 class="label">publish data to topic</h4></td></tr>
+		<tr id="pubTopicTr">
+			<td class="fLable">topicName：</td>
+			<td><input class="in" id="pubTopicName"/></td>
+			<td class="fLable">topicType：</td>
+			<td><input class="in" id="pubTopicType"/></td>
+			<td  align="right">
+				<button id="bindPubTopicBtn" onclick="toggleBindPubTopic();" >bindPubTopic</button>
+			</td>
+		</tr>
+		<tr>
+			<td class="fLable">sendData：</td>
+			<td colspan="3"><textarea id="sendPubData" style="width:100%"></textarea></td>
+			<td id="sendPubDataTr" style="display:none;" align="right">
+				<button id="sendPubBtn" onclick="sendPub()">send</button>
+			</td>
+		</tr>
+	</tbody>
+	
+	<tbody id="topicBody_sub">
+		<tr><td colspan="5" align="center" ><h4 class="label">subscribe topic</h4></td></tr>
+		<tr id="subTopicTr">
+			<td class="fLable">topicName：</td>
+			<td><input class="in" id="subTopicName"/></td>
+			<td class="fLable">topicType：</td>
+			<td><input class="in" id="subTopicType"/></td>
+			<td  align="right">
+				<button id="bindSubTopicBtn" onclick="bindSubTopic();" >subscribe</button>
+			</td>
+		</tr>
+		<tr><td>&nbsp;</td></tr>
+	</tbody>
+
+	  <tbody id="goals">
+	  <tr><td colspan="5" align="center" ><h4 class="label">goal list</h4></td></tr>
+	  <tr id="goalsTr_template" style="display:none">
+		  <td class="fLable">goalID：</td>
+		  <td><span class="in goalID">#goalID#</span></td>
+		  <td class="fLable">coor：</td>
+		  <td><span class="in coor">#coor#</span></td>
+		  <td  align="right">
+			  <button id="cancleGoal" onclick="cancleGoal('#goalID#');" >cancleGoal</button>
+		  </td>
+	  </tr>
+
+	  </tbody>
+
+  </table>
+  
+  <div id="rosmap" align="center"></div>
+</body>
+</html>
